@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f27e3d44-ce4f-4748-bef4-db2abe848088" name="Changes" comment="" />
+    <list default="true" id="f27e3d44-ce4f-4748-bef4-db2abe848088" name="Changes" comment="Create multi module project" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +57,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/devtools/projects/calculator-multi-module",
@@ -88,7 +89,20 @@
       <option name="presentableId" value="Default" />
       <updated>1758751942947</updated>
     </task>
+    <task id="LOCAL-00001" summary="Create multi module project">
+      <option name="closed" value="true" />
+      <created>1758757937912</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1758757937912</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Create multi module project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create multi module project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
