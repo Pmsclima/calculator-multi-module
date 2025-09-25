@@ -38,6 +38,21 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BigDecimal sub(CalculatorBinaryOperands calculatorBinaryOperands) {
+        validateOperands(calculatorBinaryOperands);
+
+        log.info("calculate subtraction of {} and {}",
+                calculatorBinaryOperands.firstNumber(),
+                calculatorBinaryOperands.secondNumber()
+        );
+
+        return calculatorBinaryOperands.firstNumber().subtract(calculatorBinaryOperands.secondNumber(), mathContext);
+    }
+
+    /**
      * Validates the value of parameters.
      *
      * @param calculatorBinaryOperands containing the values.

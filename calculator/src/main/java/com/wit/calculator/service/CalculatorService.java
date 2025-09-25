@@ -16,4 +16,13 @@ public interface CalculatorService {
      * @return sum result.
      */
     BigDecimal sum(final CalculatorBinaryOperands calculatorBinaryOperands);
+
+    /**
+     * Calculates the subtraction of two numbers.
+     *
+     * @param calculatorBinaryOperands the validated operands to be added.
+     *
+     * @return sub result.
+     */
+    BigDecimal sub(final CalculatorBinaryOperands calculatorBinaryOperands);
 }

@@ -5,24 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f27e3d44-ce4f-4748-bef4-db2abe848088" name="Changes" comment="add git ignore">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/target/calculator-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/target/calculator-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rest/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/src/main/java/com/wit/calculator/rest/RestApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rest/rest/src/test/java/com/wit/calculator/rest/RestApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/com/wit/calculator/service/CalculatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/com/wit/calculator/service/CalculatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/com/wit/calculator/service/CalculatorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/com/wit/calculator/service/CalculatorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/test/java/service/CalculatorServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/test/java/service/CalculatorServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rest/src/main/java/com/wit/calculator/rest/web/CalculatorApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/rest/src/main/java/com/wit/calculator/rest/web/CalculatorApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rest/src/main/java/com/wit/calculator/rest/web/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/rest/src/main/java/com/wit/calculator/rest/web/CalculatorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rest/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/rest/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rest/src/test/java/com/wit/calculator/rest/web/CalculatorControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/rest/src/test/java/com/wit/calculator/rest/web/CalculatorControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +50,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/02-calculator-sub" />
+                    <option name="lastUsedInstant" value="1758839605" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/01-calculator-sum" />
                     <option name="lastUsedInstant" value="1758758174" />
@@ -108,16 +102,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.CalculatorControllerTest$Sub.executor": "Run",
+    "JUnit.CalculatorControllerTest$Sub.sub_badRequest.executor": "Run",
+    "JUnit.CalculatorControllerTest$Sub.sum_ok.executor": "Run",
     "JUnit.CalculatorControllerTest$Sum.executor": "Run",
     "JUnit.CalculatorControllerTest.executor": "Run",
     "JUnit.CalculatorGlobalExceptionHandlerTest.executor": "Run",
+    "JUnit.CalculatorServiceTest$Sub.executor": "Run",
     "JUnit.CalculatorServiceTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "feature/01-calculator-sum",
+    "git-widget-placeholder": "feature/02-calculator-sub",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/devtools/projects/calculator-multi-module",
     "onboarding.tips.debug.path": "C:/devtools/projects/calculator-multi-module/calculator/src/Main.java",
@@ -127,8 +125,8 @@
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.CalculatorGlobalExceptionHandlerTest">
-    <configuration name="CalculatorControllerTest$Sum" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CalculatorServiceTest$Sub">
+    <configuration name="CalculatorControllerTest$Sub" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rest" />
       <extension name="coverage">
         <pattern>
@@ -137,13 +135,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.wit.calculator.rest.web.CalculatorControllerTest" />
-      <option name="MAIN_CLASS_NAME" value="com.wit.calculator.rest.web.CalculatorControllerTest$Sum" />
+      <option name="MAIN_CLASS_NAME" value="com.wit.calculator.rest.web.CalculatorControllerTest$Sub" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculatorControllerTest$Sub.sub_badRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rest" />
       <extension name="coverage">
         <pattern>
@@ -151,9 +149,26 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wit.calculator.rest.web" />
-      <option name="MAIN_CLASS_NAME" value="com.wit.calculator.rest.web.CalculatorControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.wit.calculator.rest.web.CalculatorControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="com.wit.calculator.rest.web.CalculatorControllerTest$Sub" />
+      <option name="METHOD_NAME" value="sub_badRequest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculatorControllerTest$Sub.sum_ok" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wit.calculator.rest.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wit.calculator.rest.web.CalculatorControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="com.wit.calculator.rest.web.CalculatorControllerTest$Sub" />
+      <option name="METHOD_NAME" value="sum_ok" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -173,7 +188,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculatorServiceTest$Sub" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <extension name="coverage">
         <pattern>
@@ -181,8 +196,8 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.CalculatorServiceTest" />
+      <option name="PACKAGE_NAME" value="service.CalculatorServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="service.CalculatorServiceTest$Sub" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -201,10 +216,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CalculatorServiceTest$Sub" />
+        <item itemvalue="JUnit.CalculatorControllerTest$Sub" />
+        <item itemvalue="JUnit.CalculatorControllerTest$Sub.sub_badRequest" />
+        <item itemvalue="JUnit.CalculatorControllerTest$Sub.sum_ok" />
         <item itemvalue="JUnit.CalculatorGlobalExceptionHandlerTest" />
-        <item itemvalue="JUnit.CalculatorControllerTest$Sum" />
-        <item itemvalue="JUnit.CalculatorServiceTest" />
-        <item itemvalue="JUnit.CalculatorControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -250,7 +266,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/rest/src/test/java/com/wit/calculator/rest/web/CalculatorControllerTest.java</url>
-          <line>35</line>
+          <line>36</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
