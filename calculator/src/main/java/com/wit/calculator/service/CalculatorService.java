@@ -25,4 +25,13 @@ public interface CalculatorService {
      * @return sub result.
      */
     BigDecimal sub(final CalculatorBinaryOperands calculatorBinaryOperands);
+
+    /**
+     * Calculates the multiplication of two numbers.
+     *
+     * @param calculatorBinaryOperands the validated operands to be added.
+     *
+     * @return multiplication result.
+     */
+    BigDecimal mult(final CalculatorBinaryOperands calculatorBinaryOperands);
 }

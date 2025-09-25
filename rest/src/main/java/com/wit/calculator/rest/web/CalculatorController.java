@@ -76,4 +76,30 @@ public class CalculatorController implements CalculatorApi {
         log.info("REST sub result: {}", result);
         return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
     }
+
+    /**
+     * Multiply two operands.
+     *
+     * @param calculatorRequest the payload body containing operands firstNumber and secondNumber.
+     *
+     * @return the result of the multiplication operation.
+     */
+    @Override
+    @PostMapping(
+            path = "${api.endpoints.mult}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<CalculatorResponse> multiply(CalculatorRequest calculatorRequest) {
+        log.info("REST mult of {} and {}", calculatorRequest.firstNumber(), calculatorRequest.secondNumber());
+
+        final BigDecimal result = calculatorService.mult(
+                new CalculatorBinaryOperands(
+                        calculatorRequest.firstNumber(),
+                        calculatorRequest.secondNumber()
+                ));
+
+        log.info("REST mult result: {}", result);
+        return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
+    }
 }
