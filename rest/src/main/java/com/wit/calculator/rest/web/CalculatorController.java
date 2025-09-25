@@ -40,6 +40,7 @@ public class CalculatorController implements CalculatorApi {
     )
     public ResponseEntity<CalculatorResponse> sum(final CalculatorRequest calculatorRequest) {
         log.info("REST sum of {} and {}", calculatorRequest.firstNumber(), calculatorRequest.secondNumber());
+
         final BigDecimal result = calculatorService.sum(
                 new CalculatorBinaryOperands(
                         calculatorRequest.firstNumber(),
@@ -47,6 +48,32 @@ public class CalculatorController implements CalculatorApi {
                 ));
 
         log.info("REST sum result: {}", result);
+        return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
+    }
+
+    /**
+     * Subtracts two operands.
+     *
+     * @param calculatorRequest the payload body containing operands firstNumber and secondNumber.
+     *
+     * @return the result of the subtract operation.
+     */
+    @Override
+    @PostMapping(
+            path = "${api.endpoints.sub}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<CalculatorResponse> sub(CalculatorRequest calculatorRequest) {
+        log.info("REST sub of {} and {}", calculatorRequest.firstNumber(), calculatorRequest.secondNumber());
+
+        final BigDecimal result = calculatorService.sub(
+                new CalculatorBinaryOperands(
+                        calculatorRequest.firstNumber(),
+                        calculatorRequest.secondNumber()
+                ));
+
+        log.info("REST sub result: {}", result);
         return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
     }
 }
