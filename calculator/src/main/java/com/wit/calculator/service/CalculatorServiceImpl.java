@@ -53,6 +53,21 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BigDecimal mult(CalculatorBinaryOperands calculatorBinaryOperands) {
+        validateOperands(calculatorBinaryOperands);
+
+        log.info("calculate mult of {} and {}",
+                calculatorBinaryOperands.firstNumber(),
+                calculatorBinaryOperands.secondNumber()
+        );
+
+        return calculatorBinaryOperands.firstNumber().multiply(calculatorBinaryOperands.secondNumber(), mathContext);
+    }
+
+    /**
      * Validates the value of parameters.
      *
      * @param calculatorBinaryOperands containing the values.

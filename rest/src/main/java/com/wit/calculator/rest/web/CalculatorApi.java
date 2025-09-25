@@ -64,4 +64,27 @@ public interface CalculatorApi {
             ),
     })
     ResponseEntity<CalculatorResponse> sub(@Valid @RequestBody final CalculatorRequest calculatorRequest);
+
+    @Operation(
+            summary = "Multiply two numbers.",
+            description = "Multiply two numbers."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Success",
+                    content = @Content(schema = @Schema(implementation = CalculatorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Validation Error",
+                    content = @Content(schema = @Schema(implementation = CalculatorErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal Server Error",
+                    content = @Content(schema = @Schema(implementation = CalculatorErrorResponse .class))
+            ),
+    })
+    ResponseEntity<CalculatorResponse> multiply(@Valid @RequestBody final CalculatorRequest calculatorRequest);
 }

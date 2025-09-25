@@ -61,4 +61,28 @@ class CalculatorServiceTest {
             assertThrows(IllegalArgumentException.class, () -> service.sub(ops));
         }
     }
+
+    @Nested
+    @DisplayName("MULTIPLICATION")
+    class Multiplication {
+        @Test
+        void mult_multiplyTwoPositiveDecimals() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("10.5"), new BigDecimal("10.5"));
+            var result = service.mult(ops);
+            assertEquals(new BigDecimal("110.25"), result);
+        }
+
+        @Test
+        void mult_handlesNegatives() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("-1.2"), new BigDecimal("3.2"));
+            var result = service.mult((ops));
+            assertEquals(new BigDecimal("-3.84"), result);
+        }
+
+        @Test
+        void mult_nullOperandThrows() {
+            var ops = new CalculatorBinaryOperands(null, new BigDecimal("2"));
+            assertThrows(IllegalArgumentException.class, () -> service.mult(ops));
+        }
+    }
 }

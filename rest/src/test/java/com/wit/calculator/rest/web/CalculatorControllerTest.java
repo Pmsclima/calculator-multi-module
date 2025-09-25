@@ -31,6 +31,8 @@ class CalculatorControllerTest {
 
     private static final String SUM = "/api/v1/calculator/sum";
     private static final String SUB = "/api/v1/calculator/sub";
+    private static final String MULT = "/api/v1/calculator/mult";
+
 
     @Nested
     @DisplayName("SUM")
@@ -126,6 +128,56 @@ class CalculatorControllerTest {
             mockMvc.perform(post(SUB)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(req)))
+                    .andExpect(status().isInternalServerError())
+                    .andExpect(jsonPath("$.statusCode").value(500))
+                    .andExpect(jsonPath("$.error").value("Internal Server Error"));
+        }
+    }
+
+    @Nested
+    @DisplayName("MULTIPLICATION")
+    class Multiplication {
+        @Test
+        @DisplayName("POST /mult -> 200 OK")
+        void sub_ok() throws Exception {
+            var req = new CalculatorRequest(new BigDecimal("12.5"), new BigDecimal("10"));
+
+            Mockito.when(calculatorService.mult(any(CalculatorBinaryOperands.class)))
+                    .thenReturn(new BigDecimal("21.0"));
+
+            mockMvc.perform(post(MULT)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(req)))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.result").value("21.0"));
+        }
+
+        @Test
+        @DisplayName("POST /mult -> 400 Bad Request (validation error)")
+        void sub_badRequest() throws Exception {
+            String body = """
+                        {"secondNumber": 5}
+                    """;
+
+            mockMvc.perform(post(MULT)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(body))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.statusCode").value(400))
+                    .andExpect(jsonPath("$.error").value("Validation Error"));
+        }
+
+        @Test
+        @DisplayName("POST /mult -> 500 Internal Server Error")
+        void sub_internalError() throws Exception {
+            var req = new CalculatorRequest(new BigDecimal("1"), new BigDecimal("2"));
+
+            Mockito.when(calculatorService.mult(any(CalculatorBinaryOperands.class)))
+                    .thenThrow(new RuntimeException("boom"));
+
+            mockMvc.perform(post(MULT)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(req)))
                     .andExpect(status().isInternalServerError())
                     .andExpect(jsonPath("$.statusCode").value(500))
                     .andExpect(jsonPath("$.error").value("Internal Server Error"));
