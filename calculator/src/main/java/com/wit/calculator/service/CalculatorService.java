@@ -34,4 +34,13 @@ public interface CalculatorService {
      * @return multiplication result.
      */
     BigDecimal mult(final CalculatorBinaryOperands calculatorBinaryOperands);
+
+    /**
+     * Calculates the division of two numbers.
+     *
+     * @param calculatorBinaryOperands the validated operands to be added.
+     *
+     * @return division result.
+     */
+    BigDecimal division(final CalculatorBinaryOperands calculatorBinaryOperands);
 }

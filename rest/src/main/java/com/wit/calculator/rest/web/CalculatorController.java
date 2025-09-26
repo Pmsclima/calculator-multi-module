@@ -102,4 +102,30 @@ public class CalculatorController implements CalculatorApi {
         log.info("REST mult result: {}", result);
         return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
     }
+
+    /**
+     * Divide two operands.
+     *
+     * @param calculatorRequest the payload body containing operands firstNumber and secondNumber.
+     *
+     * @return the result of the division operation.
+     */
+    @Override
+    @PostMapping(
+            path = "${api.endpoints.div}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<CalculatorResponse> division(CalculatorRequest calculatorRequest) {
+        log.info("REST div of {} and {}", calculatorRequest.firstNumber(), calculatorRequest.secondNumber());
+
+        final BigDecimal result = calculatorService.division(
+                new CalculatorBinaryOperands(
+                        calculatorRequest.firstNumber(),
+                        calculatorRequest.secondNumber()
+                ));
+
+        log.info("REST div result: {}", result);
+        return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
+    }
 }
