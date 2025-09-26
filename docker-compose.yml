@@ -1,0 +1,14 @@
+services:
+  rest:
+    build:
+      context: .
+      dockerfile: rest/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - calculator
+
+  calculator:
+    build:
+      context: .
+      dockerfile: calculator/Dockerfile
