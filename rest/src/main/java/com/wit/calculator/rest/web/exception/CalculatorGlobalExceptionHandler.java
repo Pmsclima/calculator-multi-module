@@ -10,17 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Calculator global exception handler.
@@ -47,7 +44,7 @@ public class CalculatorGlobalExceptionHandler {
                 .getFieldErrors()
                 .stream()
                 .map(this::toViolation)
-                .collect(Collectors.toList());
+                .toList();
 
         log.warn("400 Validation Error at {} -> {}",
                 httpServletRequest.getRequestURI(),
@@ -80,7 +77,7 @@ public class CalculatorGlobalExceptionHandler {
                constraintViolationException.getConstraintViolations()
                 .stream()
                 .map(this::toViolation)
-                .collect(Collectors.toList());
+                .toList();
 
         log.warn("400 Constraint Violation at {} -> {}",
                 httpServletRequest.getRequestURI(),
@@ -216,62 +213,6 @@ public class CalculatorGlobalExceptionHandler {
     }
 
     /**
-     * Endpoint Not found (HTTP 404).
-     *
-     * @param noHandlerFoundException the exception thrown.
-     * @param httpServletRequest the current request.
-     *
-     * @return a ResponseEntity containing {@link CalculatorErrorResponse}.
-     */
-    @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<CalculatorErrorResponse> handleNotFound(
-            final NoHandlerFoundException noHandlerFoundException,
-            final HttpServletRequest httpServletRequest
-    ) {
-        log.warn("404 Not Found at {} -> {}",
-                httpServletRequest.getRequestURI(),
-                noHandlerFoundException.getRequestURL()
-        );
-
-        return build(
-                HttpStatus.NOT_FOUND,
-                "Not Found",
-                "Endpoint not found",
-                httpServletRequest.getRequestURI(),
-                List.of()
-        );
-    }
-
-    /**
-     * Method not allowed (HTTP 405).
-     *
-     * @param httpRequestMethodNotSupportedException the exception thrown.
-     * @param httpServletRequest the current request.
-     *
-     * @return a ResponseEntity containing {@link CalculatorErrorResponse}.
-     */
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<CalculatorErrorResponse> handleMethodNotSupported(
-            final HttpRequestMethodNotSupportedException httpRequestMethodNotSupportedException,
-            final HttpServletRequest httpServletRequest
-    ) {
-        final String message = "Method '%s' is not supported for this request";
-
-        log.warn("405 Method not allowed at {} -> {}",
-                httpServletRequest.getRequestURI(),
-                message
-        );
-
-        return build(
-                HttpStatus.METHOD_NOT_ALLOWED,
-                "Method Not Allowed",
-                message,
-                httpServletRequest.getRequestURI(),
-                List.of()
-        );
-    }
-
-    /**
      * Unsupported media type (HTTP 415).
      *
      * @param httpMediaTypeNotSupportedException the exception thrown.
@@ -325,8 +266,6 @@ public class CalculatorGlobalExceptionHandler {
                 List.of()
         );
     }
-
-    /* ===================== helpers ===================== */
 
     /**
      * Converts a {@link FieldError} to a {@link CalculatorErrorResponse.FieldViolation}.
