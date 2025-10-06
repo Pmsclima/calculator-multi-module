@@ -53,7 +53,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
     @Test
     void whenConstraintViolationParam_returns400() throws Exception {
-        // n < 1 viola @Min(1)
         mockMvc.perform(get("/test/params")
                         .param("n", "0"))
                 .andExpect(status().isBadRequest())
@@ -80,7 +79,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
     @Test
     void whenGenericException_returns500() throws Exception {
-        mockMvc.perform(post("/test/boom"))
+        mockMvc. perform(post("/test/boom"))
                 .andExpect(status().isInternalServerError())
                 .andExpect(jsonPath("$.error").value("Internal Server Error"))
                 .andExpect(jsonPath("$.statusCode").value(500));
