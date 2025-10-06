@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -38,6 +37,52 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BigDecimal sub(CalculatorBinaryOperands calculatorBinaryOperands) {
+        validateOperands(calculatorBinaryOperands);
+
+        log.info("calculate subtraction of {} and {}",
+                calculatorBinaryOperands.firstNumber(),
+                calculatorBinaryOperands.secondNumber()
+        );
+
+        return calculatorBinaryOperands.firstNumber().subtract(calculatorBinaryOperands.secondNumber(), mathContext);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BigDecimal mult(CalculatorBinaryOperands calculatorBinaryOperands) {
+        validateOperands(calculatorBinaryOperands);
+
+        log.info("calculate mult of {} and {}",
+                calculatorBinaryOperands.firstNumber(),
+                calculatorBinaryOperands.secondNumber()
+        );
+
+        return calculatorBinaryOperands.firstNumber().multiply(calculatorBinaryOperands.secondNumber(), mathContext);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BigDecimal division(CalculatorBinaryOperands calculatorBinaryOperands) {
+        validateOperands(calculatorBinaryOperands);
+        validateDivision(calculatorBinaryOperands.secondNumber());
+
+        log.info("calculate div of {} and {}",
+                calculatorBinaryOperands.firstNumber(),
+                calculatorBinaryOperands.secondNumber()
+        );
+
+        return calculatorBinaryOperands.firstNumber().divide(calculatorBinaryOperands.secondNumber(), mathContext);
+    }
+
+    /**
      * Validates the value of parameters.
      *
      * @param calculatorBinaryOperands containing the values.
@@ -46,5 +91,17 @@ public class CalculatorServiceImpl implements CalculatorService {
         Optional.ofNullable(calculatorBinaryOperands).orElseThrow(NOT_NULL);
         Optional.ofNullable(calculatorBinaryOperands.firstNumber()).orElseThrow(NOT_NULL);
         Optional.ofNullable(calculatorBinaryOperands.secondNumber()).orElseThrow(NOT_NULL);
+    }
+
+    /**
+     * Validates that divisor is not zero.
+     *
+     * @param divisor the divisor.
+     */
+    private void validateDivision(final BigDecimal divisor) {
+        if(divisor.compareTo(BigDecimal.ZERO) == 0) {
+            log.error("Division by zero attempted");
+            throw new ArithmeticException("Division by 0 is not allowed");
+        }
     }
 }

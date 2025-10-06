@@ -37,4 +37,82 @@ class CalculatorServiceTest {
             assertThrows(IllegalArgumentException.class, () -> service.sum(ops));
         }
     }
+
+    @Nested
+    @DisplayName("SUB")
+    class Sub {
+        @Test
+        void sub_subtractTwoPositiveDecimals() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("10.5"), new BigDecimal("10.5"));
+            var result = service.sub(ops);
+            assertEquals(new BigDecimal("0.0"), result);
+        }
+
+        @Test
+        void sub_handlesNegatives() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("-1.2"), new BigDecimal("3.2"));
+            var result = service.sub((ops));
+            assertEquals(new BigDecimal("-4.4"), result);
+        }
+
+        @Test
+        void sub_nullOperandThrows() {
+            var ops = new CalculatorBinaryOperands(null, new BigDecimal("2"));
+            assertThrows(IllegalArgumentException.class, () -> service.sub(ops));
+        }
+    }
+
+    @Nested
+    @DisplayName("MULTIPLICATION")
+    class Multiplication {
+        @Test
+        void mult_multiplyTwoPositiveDecimals() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("10.5"), new BigDecimal("10.5"));
+            var result = service.mult(ops);
+            assertEquals(new BigDecimal("110.25"), result);
+        }
+
+        @Test
+        void mult_handlesNegatives() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("-1.2"), new BigDecimal("3.2"));
+            var result = service.mult((ops));
+            assertEquals(new BigDecimal("-3.84"), result);
+        }
+
+        @Test
+        void mult_nullOperandThrows() {
+            var ops = new CalculatorBinaryOperands(null, new BigDecimal("2"));
+            assertThrows(IllegalArgumentException.class, () -> service.mult(ops));
+        }
+    }
+
+    @Nested
+    @DisplayName("DIVISION")
+    class Division {
+        @Test
+        void div_divideTwoPositiveDecimals() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("10.5"), new BigDecimal("10.5"));
+            var result = service.division(ops);
+            assertEquals(new BigDecimal("1"), result);
+        }
+
+        @Test
+        void div_handlesNegatives() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("-1.2"), new BigDecimal("3.2"));
+            var result = service.division((ops));
+            assertEquals(new BigDecimal("-0.375"), result);
+        }
+
+        @Test
+        void div_nullOperandThrows() {
+            var ops = new CalculatorBinaryOperands(null, new BigDecimal("2"));
+            assertThrows(IllegalArgumentException.class, () -> service.division(ops));
+        }
+
+        @Test
+        void div_divByZero() {
+            var ops = new CalculatorBinaryOperands(new BigDecimal("2"), BigDecimal.ZERO);
+            assertThrows(ArithmeticException.class, () -> service.division(ops));
+        }
+    }
 }
