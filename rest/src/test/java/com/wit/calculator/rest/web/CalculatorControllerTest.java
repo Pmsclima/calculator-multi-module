@@ -3,6 +3,7 @@ package com.wit.calculator.rest.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wit.calculator.domain.CalculatorBinaryOperands;
 import com.wit.calculator.rest.dto.CalculatorRequest;
+import com.wit.calculator.rest.kafka.CalculatorProducer;
 import com.wit.calculator.service.CalculatorService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -21,13 +22,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(CalculatorController.class)
-class CalculatorControllerTest {
+class  CalculatorControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
     @MockBean
     private CalculatorService calculatorService;
+    @MockBean
+    private CalculatorProducer calculatorProducer;
 
     private static final String SUM = "/api/v1/calculator/sum";
     private static final String SUB = "/api/v1/calculator/sub";

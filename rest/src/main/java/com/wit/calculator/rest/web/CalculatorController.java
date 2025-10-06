@@ -1,6 +1,8 @@
 package com.wit.calculator.rest.web;
 
 import com.wit.calculator.domain.CalculatorBinaryOperands;
+import com.wit.calculator.kafka.CalculationEvent;
+import com.wit.calculator.rest.kafka.CalculatorProducer;
 import com.wit.calculator.service.CalculatorService;
 import com.wit.calculator.rest.dto.CalculatorRequest;
 import com.wit.calculator.rest.dto.CalculatorResponse;
@@ -24,6 +26,7 @@ import java.math.BigDecimal;
 @RequestMapping("${api.base.path}")
 public class CalculatorController implements CalculatorApi {
     private final CalculatorService calculatorService;
+    private final CalculatorProducer calculatorProducer;
 
     /**
      * Adds two operands and sum.
@@ -46,6 +49,13 @@ public class CalculatorController implements CalculatorApi {
                         calculatorRequest.firstNumber(),
                         calculatorRequest.secondNumber()
                 ));
+
+        calculatorProducer.send(new CalculationEvent(
+                "SUM",
+                calculatorRequest.firstNumber().toPlainString(),
+                calculatorRequest.secondNumber().toPlainString(),
+                result.toPlainString()
+        ));
 
         log.info("REST sum result: {}", result);
         return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
@@ -73,6 +83,13 @@ public class CalculatorController implements CalculatorApi {
                         calculatorRequest.secondNumber()
                 ));
 
+        calculatorProducer.send(new CalculationEvent(
+                "SUB",
+                calculatorRequest.firstNumber().toPlainString(),
+                calculatorRequest.secondNumber().toPlainString(),
+                result.toPlainString()
+        ));
+
         log.info("REST sub result: {}", result);
         return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
     }
@@ -99,6 +116,13 @@ public class CalculatorController implements CalculatorApi {
                         calculatorRequest.secondNumber()
                 ));
 
+        calculatorProducer.send(new CalculationEvent(
+                "MULT",
+                calculatorRequest.firstNumber().toPlainString(),
+                calculatorRequest.secondNumber().toPlainString(),
+                result.toPlainString()
+        ));
+
         log.info("REST mult result: {}", result);
         return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
     }
@@ -124,6 +148,13 @@ public class CalculatorController implements CalculatorApi {
                         calculatorRequest.firstNumber(),
                         calculatorRequest.secondNumber()
                 ));
+
+        calculatorProducer.send(new CalculationEvent(
+                "DIV",
+                calculatorRequest.firstNumber().toPlainString(),
+                calculatorRequest.secondNumber().toPlainString(),
+                result.toPlainString()
+        ));
 
         log.info("REST div result: {}", result);
         return new ResponseEntity<>(new CalculatorResponse(result), HttpStatus.OK);
